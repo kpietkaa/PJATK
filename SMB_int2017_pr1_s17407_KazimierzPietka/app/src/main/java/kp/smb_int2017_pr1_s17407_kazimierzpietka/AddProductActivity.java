@@ -3,6 +3,8 @@ package kp.smb_int2017_pr1_s17407_kazimierzpietka;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -13,6 +15,10 @@ public class AddProductActivity extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-//        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        // String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+    }
+
+    public void addProductToDb(View view) {
+        Toast.makeText(getBaseContext(), "addProductToDb", Toast.LENGTH_SHORT).show();
     }
 }

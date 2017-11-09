@@ -62,15 +62,15 @@ public class MainActivity extends AppCompatActivity {
         the activity that should be started).
          */
         Intent intent = new Intent(this, AddProductActivity.class);
-//        EditText editText = (EditText) findViewById(R.id.editText);
-//        String message = editText.getText().toString();
+        // EditText editText = (EditText) findViewById(R.id.editText);
+        // String message = editText.getText().toString();
         String message = "createProduct";
         /*
         putExtra() method adds the EditText's value to the intent
         An Intent can carry data types as key-value pairs called extras. Your key is
         a public constant EXTRA_MESSAGE because the next activity uses the key to retrieve the text value.
          */
-//        intent.putExtra(EXTRA_MESSAGE, message);
+        // intent.putExtra(EXTRA_MESSAGE, message);
         // startActivity() method starts an instance of the DisplayMessageActivity specified by the Intent
         startActivity(intent);
     }
