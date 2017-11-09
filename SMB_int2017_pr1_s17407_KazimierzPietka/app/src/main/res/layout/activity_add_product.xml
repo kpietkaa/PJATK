@@ -8,9 +8,92 @@
 
     <TextView
         android:id="@+id/textView"
+        android:text="@string/add_product"
+        android:minWidth="750px"
+        android:textSize="32sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dodaj produkt"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="160dp" />
+
+    <TextView
+        android:id="@+id/name"
+        android:text="@string/name"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/price"
+        android:text="@string/price"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/input_name"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/quantity"
+        android:text="@string/quantity"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/input_price"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/input_name"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_alignBaseline="@+id/name"
+        android:layout_alignBottom="@+id/name"
+        android:layout_toEndOf="@+id/name" />
+
+    <EditText
+        android:id="@+id/input_price"
+        android:ems="10"
+        android:hint="@string/price"
+        android:inputType="number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/price"
+        android:layout_alignBottom="@+id/price"
+        android:layout_alignStart="@+id/input_name" />
+
+    <EditText
+        android:id="@+id/quantity_input"
+        android:ems="10"
+        android:hint="@string/quantity"
+        android:inputType="number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/quantity"
+        android:layout_alignBottom="@+id/quantity"
+        android:layout_alignStart="@+id/input_price" />
+
+    <Button
+        android:id="@+id/add_product_button"
+        android:text="@string/add_product"
+        android:background="#E91E63"
+        android:padding="25px"
+        android:textColor="#fff"
+        android:onClick="addProductToDb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/quantity_input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp" />
+
 </RelativeLayout>
