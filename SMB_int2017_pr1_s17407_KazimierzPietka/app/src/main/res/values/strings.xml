@@ -7,4 +7,7 @@
     <string name="delete_product">Usuń produkt</string>
     <string name="edit_product">Edytuj produkt</string>
     <string name="settings">Ustawienia aplikacji</string>
+    <string name="name">Nazwa</string>
+    <string name="price">Cena</string>
+    <string name="quantity">Ilość</string>
 </resources>
