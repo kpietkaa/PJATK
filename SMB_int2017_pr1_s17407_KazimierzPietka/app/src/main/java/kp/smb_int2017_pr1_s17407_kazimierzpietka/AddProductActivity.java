@@ -43,5 +43,8 @@ public class AddProductActivity extends AppCompatActivity {
         db.addTask(task);
 
         Toast.makeText(getBaseContext(), R.string.add_task_success, Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, ShowTasksActivity.class);
+        startActivity(intent);
     }
 }
