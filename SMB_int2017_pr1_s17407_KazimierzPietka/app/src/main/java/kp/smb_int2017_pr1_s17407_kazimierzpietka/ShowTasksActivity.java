@@ -22,19 +22,8 @@ public class ShowTasksActivity extends AppCompatActivity {
         List<Task> tasks;
         tasks = db.allTasks();
 
-        CustomListAdapter tasksList = new CustomListAdapter(this, tasks);
+        final CustomListAdapter tasksList = new CustomListAdapter(this, tasks);
         listView = (ListView) findViewById(R.id.listviewID);
         listView.setAdapter(tasksList);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v, final int position, long id) {
-                Toast.makeText(ShowTasksActivity.this,
-                        "List Item Clicked:" + position, Toast.LENGTH_LONG)
-                        .show();
-            }
-        });
-
     }
 }

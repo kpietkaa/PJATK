@@ -20,7 +20,20 @@ public class AddProductActivity extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        // String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        Integer taskId = intent.getIntExtra("task", 0);
+        if (taskId == 0) {}
+        else {
+            Task task = db.getTask(taskId);
+
+            name =      (EditText) findViewById(R.id.input_name);
+            price =     (EditText) findViewById(R.id.input_price);
+            quantity =  (EditText) findViewById(R.id.quantity_input);
+
+            name.setText(task.getName());
+            price.setText(task.getPrice());
+            quantity.setText(task.getQuantity());
+
+        }
     }
 
     public void addProductToDb(View view) {

@@ -16,7 +16,7 @@ public class CustomListAdapter extends ArrayAdapter {
     private final Activity context;
     private final List<Task> tasksList;
     private SQLiteDatabaseHandler db;
-    Button edit;
+    Button edit = null;
     Button destroy = null;
     Button done = null;
 
@@ -36,7 +36,8 @@ public class CustomListAdapter extends ArrayAdapter {
         TextView nameTextField =     (TextView) rowView.findViewById(R.id.nameTextViewID);
         TextView priceTextField =    (TextView) rowView.findViewById(R.id.priceTextViewID);
         TextView quantityTextField = (TextView) rowView.findViewById(R.id.quantityTextViewID);
-        destroy = (Button) rowView.findViewById(R.id.destroyButton);
+        destroy                    = (Button) rowView.findViewById(R.id.destroyButton);
+        edit                       = (Button) rowView.findViewById(R.id.editButton);
         done                       = (Button) rowView.findViewById(R.id.doneButton);
 
         nameTextField.setText("Nazwa: " + tasksList.get(position).getName());
@@ -53,6 +54,17 @@ public class CustomListAdapter extends ArrayAdapter {
             }
         });
 
+        rowView.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Task task = tasksList.get(position);
+                Intent intent = new Intent(context, AddProductActivity.class);
+                Integer id = Integer.parseInt(task.getId());
+                intent.putExtra("task", id);
+                context.startActivity(intent);
+            }
+        });
+
         rowView.findViewById(R.id.doneButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +73,7 @@ public class CustomListAdapter extends ArrayAdapter {
                 db.updateTask(task);
                 Intent intent = new Intent(context, ShowTasksActivity.class);
                 context.startActivity(intent);
+                Toast.makeText(context, "Kupione: " + tasksList.get(position).getName() + " cena i ilość zmienione na 0", Toast.LENGTH_SHORT).show();
             }
         });
 
