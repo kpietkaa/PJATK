@@ -15,8 +15,8 @@ public class Task {
         this.quantity = quantity;
     }
 
-    public int    getId() {
-        return id;
+    public String getId() {
+        return Integer.toString(id);
     }
     public String getName() {
         return name;

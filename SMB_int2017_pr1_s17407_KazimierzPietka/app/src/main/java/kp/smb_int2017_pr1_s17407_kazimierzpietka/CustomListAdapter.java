@@ -25,10 +25,12 @@ public class CustomListAdapter extends ArrayAdapter {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView = inflater.inflate(R.layout.listview_row, null,true);
 
+        TextView idTextField =       (TextView) rowView.findViewById(R.id.idTextViewID);
         TextView nameTextField =     (TextView) rowView.findViewById(R.id.nameTextViewID);
         TextView priceTextField =    (TextView) rowView.findViewById(R.id.priceTextViewID);
         TextView quantityTextField = (TextView) rowView.findViewById(R.id.quantityTextViewID);
 
+        idTextField.setText(tasksList.get(position).getId());
         nameTextField.setText(tasksList.get(position).getName());
         priceTextField.setText(tasksList.get(position).getPrice());
         quantityTextField.setText(tasksList.get(position).getQuantity());
