@@ -23,6 +23,10 @@
             android:name=".AddProductActivity"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity
+            android:name=".ShowTasksActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
 package kp.smb_int2017_pr1_s17407_kazimierzpietka;
 
-import java.util.List;
 import java.util.Random;
 
 import android.content.Intent;
