@@ -78,22 +78,9 @@
             fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/material_design_floating_action_menu_item3"
-            android:src="@drawable/ic_action_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_label="@string/delete_product"
-            fab:fab_size="mini" />
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/material_design_floating_action_menu_item4"
-            android:src="@drawable/ic_action_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_label="@string/edit_product"
-            fab:fab_size="mini" />
-        <com.github.clans.fab.FloatingActionButton
             android:id="@+id/material_design_floating_action_menu_item5"
             android:src="@drawable/ic_action_settings"
+            android:onClick="settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_label="@string/settings"
