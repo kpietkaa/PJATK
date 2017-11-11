@@ -74,4 +74,9 @@ public class MainActivity extends AppCompatActivity {
         // startActivity() method starts an instance of the DisplayMessageActivity specified by the Intent
         startActivity(intent);
     }
+
+    public void showTasks(View view) {
+        Intent intent = new Intent(this, ShowTasksActivity.class);
+        startActivity(intent);
+    }
 }

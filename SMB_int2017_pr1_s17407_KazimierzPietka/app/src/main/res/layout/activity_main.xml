@@ -10,7 +10,8 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/appBarLayout">
 
     </android.support.design.widget.AppBarLayout>
 
@@ -61,6 +62,7 @@
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/material_design_floating_action_menu_item1"
             android:src="@drawable/ic_list_black"
+            android:onClick="showTasks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_label="@string/show_list"
@@ -97,7 +99,5 @@
             fab:fab_label="@string/settings"
             fab:fab_size="mini" />
     </com.github.clans.fab.FloatingActionMenu>
-
-    <include layout="@layout/content_main" />
 
 </RelativeLayout>
