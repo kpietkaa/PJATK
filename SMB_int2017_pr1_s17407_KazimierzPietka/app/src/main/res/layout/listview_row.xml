@@ -16,12 +16,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/idTextViewID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-        <TextView
             android:id="@+id/nameTextViewID"
             android:layout_width="370dp"
             android:layout_height="wrap_content"
@@ -47,6 +41,7 @@
     <Button
         android:id="@+id/doneButton"
         android:text="Done"
+        android:focusable="false"
         android:layout_width="wrap_content"
         android:layout_height="83dp"
         android:layout_weight="0.26"
@@ -55,6 +50,7 @@
     <Button
         android:id="@+id/editButton"
         android:text="Edit"
+        android:focusable="false"
         android:layout_width="70dp"
         android:layout_height="83dp"
         android:layout_weight="0.26"
@@ -63,7 +59,7 @@
     <Button
         android:id="@+id/destroyButton"
         android:text="Del"
-        android:onClick="destroyTask"
+        android:focusable="false"
         android:layout_width="53dp"
         android:layout_height="83dp"
         android:layout_weight="0.26"
