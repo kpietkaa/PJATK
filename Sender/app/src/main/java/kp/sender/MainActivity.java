@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public void send(View view){
         text = (EditText) findViewById(R.id.editText);
         Intent intent = new Intent();
-        intent.setAction("kp.KAZ_BROADCAST");
+        intent.setAction("kp.sender.KAZ_BROADCAST");
         intent.putExtra("text_message", text.getText().toString());
         sendBroadcast(intent);
         Toast.makeText(getBaseContext(), "Rozgloszenie wyslane", Toast.LENGTH_SHORT).show();
