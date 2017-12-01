@@ -1,0 +1,15 @@
+{
+  "name": "task_backend_sinatra",
+  "description": "A simple Sinatra REST API",
+  "keywords": ["sinatra", "api", "activerecord"],
+  "repository": "https://github.com/kpietkaa/PJATK/tree/master/task_backend_sinatra",
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "env": {
+    "RACK_ENV": "production"
+  },
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate && bundle exec rake db:seed"
+  }
+}
