@@ -24,7 +24,11 @@ get '/tasks/:id' do
 end
 
 post '/tasks' do
-  task = Task.new(params)
+  task = Task.new(
+               name:     params['name'],
+               price:    params['price'],
+               quantity: params['quantity']
+  )
 
   if task.save
     task.to_json
