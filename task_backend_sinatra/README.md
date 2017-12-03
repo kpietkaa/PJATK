@@ -30,6 +30,10 @@ Go to `http://localhost:9393/` for check.
 
 `curl http://localhost:9393/tasks`
 
+### Read one task (get)
+
+`curl http://localhost:9393/tasks/:id`
+
 ### Update a task (update)
 
 `curl -X PUT -d "name=test&price=666" http://localhost:9393/tasks/:id`
