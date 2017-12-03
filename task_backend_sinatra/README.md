@@ -1,9 +1,11 @@
-# Task Backend Sinatra
+# Task Backend Sinatra ![Heroku](https://heroku-badge.herokuapp.com/?app=heroku-badge)
 
 App wrote in [Sinatra](https://github.com/sinatra/sinatra) (simple and lightweight web framework written in Ruby)
-to provide backend for mobile application.
+to provide backend for mobile application. Url:
 
-## Instalation
+    https://task-backend-sinatra.herokuapp.com/
+
+## Instalation & Development
 
 Clone, install dependencies, setup database (`config/environments.rb`), run migrations, add initial data, start server
 
