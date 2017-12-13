@@ -31,7 +31,7 @@ post '/tasks' do
   )
 
   if task.save
-    task.to_json
+    'Product added successfully'
   else
     halt 422, task.errors.full_messages.to_json
   end
@@ -46,7 +46,7 @@ put '/tasks/:id' do
     task.quantity = params['quantity'] if params.has_key?('quantity')
 
     if task.save
-      task.to_json
+      'Product updated successfully'
     else
       halt 422, task.errors.full_messages.to_json
     end
