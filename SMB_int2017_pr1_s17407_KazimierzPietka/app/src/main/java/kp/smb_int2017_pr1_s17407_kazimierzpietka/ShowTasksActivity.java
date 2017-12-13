@@ -48,14 +48,10 @@ public class ShowTasksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_tasks);
 
-//        listView = (ListView) findViewById(R.id.listviewID);
+        listView = (ListView) findViewById(R.id.listviewID);
         tasks = new ArrayList<>();
 
         loadTasks();
-
-        final CustomListAdapter tasksList = new CustomListAdapter(this, tasks);
-        listView = (ListView) findViewById(R.id.listviewID);
-        listView.setAdapter(tasksList);
     }
 
     private void loadTasks(){
@@ -77,8 +73,8 @@ public class ShowTasksActivity extends AppCompatActivity {
                         System.out.print(tasks);
                     }
 
-//                    CustomListAdapter adapter = new CustomListAdapter(getApplicationContext(), tasks);
-//                    listView.setAdapter(adapter);
+                    CustomListAdapter adapter = new CustomListAdapter(getApplicationContext(), tasks);
+                    listView.setAdapter(adapter);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
