@@ -57,7 +57,7 @@ delete '/tasks/:id' do
   task = Task.where(id: params['id'])
 
   if task.destroy_all
-    { success: "ok" }.to_json
+    { success: 'ok' }.to_json
   else
     halt 500
   end

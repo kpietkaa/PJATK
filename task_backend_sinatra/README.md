@@ -22,18 +22,26 @@ Go to `http://localhost:9393/` for check.
 
 ### Create a task (post)
 
-`curl -d "name=task&price=10&qunatity=1" http://localhost:9393/tasks`
+    curl -d "name=task&price=10&qunatity=1" http://localhost:9393/tasks
 
 `name` and `price` and `qunatity` are required parameters.
 
 ### Read all tasks (get)
 
-`curl http://localhost:9393/tasks`
+    curl http://localhost:9393/tasks
+
+### Read one task (get)
+
+    curl http://localhost:9393/tasks/:id
 
 ### Update a task (update)
 
-`curl -X PUT -d "name=test&price=666" http://localhost:9393/tasks/:id`
+    curl -X PUT -d "name=test&price=666" http://localhost:9393/tasks/:id
 
 ### Delete a task (delete)
 
-`curl -X DELETE http://localhost:9393/tasks/:id`
+    curl -X DELETE http://localhost:9393/tasks/:id
+
+### Clear DB and fill with seeds
+
+    curl http://localhost:9393/refresh
