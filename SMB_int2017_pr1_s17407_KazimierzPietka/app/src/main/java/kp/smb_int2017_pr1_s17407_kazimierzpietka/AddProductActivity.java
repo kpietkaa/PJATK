@@ -18,9 +18,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class AddProductActivity extends AppCompatActivity {
-    private SQLiteDatabaseHandler db;
-    private static final String JSON_URL = "https://task-backend-sinatra.herokuapp.com/tasks";
+    private static final String URL = "https://task-backend-sinatra.herokuapp.com/tasks";
+    private Task task = null;
 
     EditText name, price, quantity;
 
@@ -28,23 +31,55 @@ public class AddProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+        loadTask();
 
+        name =      (EditText) findViewById(R.id.input_name);
+        price =     (EditText) findViewById(R.id.input_price);
+        quantity =  (EditText) findViewById(R.id.quantity_input);
+    }
+
+    protected void onPostExecute(String result) {
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
         Integer taskId = intent.getIntExtra("task", 0);
+
         if (taskId == 0) {}
         else {
-            Task task = db.getTask(taskId);
-
-            name =      (EditText) findViewById(R.id.input_name);
-            price =     (EditText) findViewById(R.id.input_price);
-            quantity =  (EditText) findViewById(R.id.quantity_input);
-
             name.setText(task.getName());
-            price.setText(task.getPrice());
-            quantity.setText(task.getQuantity());
-
+            price.setText(task.getPrice().toString());
+            quantity.setText(task.getQuantity().toString());
         }
+    }
+
+    private void loadTask(){
+        // Get the Intent that started this activity and extract the string
+        Intent intent = getIntent();
+        Integer taskId = intent.getIntExtra("task", 0);
+        String getUrl = URL + "/" + taskId;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, getUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject taskObject = new JSONObject(response);
+                    task = new Task(taskObject.getInt("id"),
+                            taskObject.getString("name"),
+                            taskObject.getInt("price"),
+                            taskObject.getInt("quantity"),
+                            0);
+                    Log.d("Response", response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
     public void addProductToDb(View view) {
@@ -52,7 +87,7 @@ public class AddProductActivity extends AppCompatActivity {
         price =     (EditText) findViewById(R.id.input_price);
         quantity =  (EditText) findViewById(R.id.quantity_input);
 
-        StringRequest postRequest = new StringRequest(Request.Method.POST, JSON_URL,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, URL,
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {

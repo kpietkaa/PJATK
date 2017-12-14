@@ -10,5 +10,5 @@
     <string name="name">Nazwa</string>
     <string name="price">Cena</string>
     <string name="quantity">Ilość</string>
-    <string name="add_task_success">Produckt dodany z sukcesem</string>
+    <string name="add_task_success">Sukces</string>
 </resources>

@@ -83,12 +83,13 @@ public class CustomListAdapter extends ArrayAdapter<Task> {
         listViewItem.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                  Toast.makeText(mCtx, "Edytowanie: " + taskList.get(position).getName(), Toast.LENGTH_SHORT).show();
-//                Task task = taskList.get(position);
-//                Intent intent = new Intent(mCtx, AddProductActivity.class);
-//                Integer id = Integer.parseInt(task.getId());
-//                intent.putExtra("task", id);
-//                context.startActivity(intent);
+                Toast.makeText(mCtx, "Edytowanie: " + taskList.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Task task = taskList.get(position);
+                Intent intent = new Intent(mCtx, AddProductActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Integer id = Integer.parseInt(task.getId());
+                intent.putExtra("task", id);
+                mCtx.startActivity(intent);
             }
         });
 
