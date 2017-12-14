@@ -95,13 +95,34 @@ public class CustomListAdapter extends ArrayAdapter<Task> {
         listViewItem.findViewById(R.id.doneButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                  Toast.makeText(mCtx, "Donowanie: " + taskList.get(position).getName(), Toast.LENGTH_SHORT).show();
-//                Task task = taskList.get(position);
-//                task.setDone();
-//                db.updateTask(task);
-//                Intent intent = new Intent(context, ShowTasksActivity.class);
-//                context.startActivity(intent);
-//                Toast.makeText(context, "Kupione: " + tasksList.get(position).getName() + " cena i ilość zmienione na 0", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mCtx, "Donowanie: " + taskList.get(position).getName(), Toast.LENGTH_SHORT).show();
+                String putUrl = URL + "/" + taskList.get(position).getId();
+                StringRequest putRequest = new StringRequest(Request.Method.PUT, putUrl,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Toast.makeText(mCtx, "Donowanie...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mCtx, "Odśwież widok :)", Toast.LENGTH_SHORT).show();
+                            Log.d("Response", response);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("Error.Response", error.toString());
+                        }
+                    }
+                ) {
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("price", "0");
+                        params.put("quantity", "0");
+                        return params;
+                    }
+                };
+                RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
+                requestQueue.add(putRequest);
             }
         });
 
