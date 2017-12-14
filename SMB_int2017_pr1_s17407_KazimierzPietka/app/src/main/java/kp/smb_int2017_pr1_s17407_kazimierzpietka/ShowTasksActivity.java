@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShowTasksActivity extends AppCompatActivity {
-    private static final String JSON_URL = "https://task-backend-sinatra.herokuapp.com/tasks";
+    private static final String URL = "https://task-backend-sinatra.herokuapp.com/tasks";
     ListView listView;
     List<Task> tasks;
 
@@ -36,7 +36,7 @@ public class ShowTasksActivity extends AppCompatActivity {
     }
 
     private void loadTasks(){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -48,11 +48,8 @@ public class ShowTasksActivity extends AppCompatActivity {
                                              taskObject.getInt("price"),
                                              taskObject.getInt("quantity"),
                                              0);
-                        System.out.print(task);
                         tasks.add(task);
-                        System.out.print(tasks);
                     }
-
                     CustomListAdapter adapter = new CustomListAdapter(getApplicationContext(), tasks);
                     listView.setAdapter(adapter);
 
@@ -67,7 +64,6 @@ public class ShowTasksActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
