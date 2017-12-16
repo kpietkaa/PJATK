@@ -88,7 +88,10 @@ public class CustomListAdapter extends ArrayAdapter<Task> {
                 Intent intent = new Intent(mCtx, AddProductActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Integer id = Integer.parseInt(task.getId());
-                intent.putExtra("task", id);
+                intent.putExtra("taskId", id);
+                intent.putExtra("taskName", task.getName());
+                intent.putExtra("taskPrice", task.getPrice());
+                intent.putExtra("taskQuantity", task.getQuantity());
                 mCtx.startActivity(intent);
             }
         });

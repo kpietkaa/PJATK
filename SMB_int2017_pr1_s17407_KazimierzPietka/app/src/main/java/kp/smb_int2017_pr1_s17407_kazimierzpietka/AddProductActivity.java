@@ -18,12 +18,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class AddProductActivity extends AppCompatActivity {
     private static final String URL = "https://task-backend-sinatra.herokuapp.com/tasks";
     private Task task = null;
+    Intent intent = null;
 
     EditText name, price, quantity;
 
@@ -31,89 +29,92 @@ public class AddProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
-        loadTask();
 
-        name =      (EditText) findViewById(R.id.input_name);
-        price =     (EditText) findViewById(R.id.input_price);
-        quantity =  (EditText) findViewById(R.id.quantity_input);
-    }
+        intent = getIntent();
+        Integer taskId      = intent.getIntExtra("taskId", 0);
+        String taskName     = intent.getStringExtra("taskName");
+        String taskPrice    = intent.getStringExtra("taskPrice");
+        String taskQunatity = intent.getStringExtra("taskQuantity");
 
-    protected void onPostExecute(String result) {
-        // Get the Intent that started this activity and extract the string
-        Intent intent = getIntent();
-        Integer taskId = intent.getIntExtra("task", 0);
+        name     = (EditText) findViewById(R.id.input_name);
+        price    = (EditText) findViewById(R.id.input_price);
+        quantity = (EditText) findViewById(R.id.quantity_input);
 
         if (taskId == 0) {}
         else {
-            name.setText(task.getName());
-            price.setText(task.getPrice().toString());
-            quantity.setText(task.getQuantity().toString());
+            name.setText(taskName);
+            price.setText(taskPrice);
+            quantity.setText(taskQunatity);
         }
     }
 
-    private void loadTask(){
-        // Get the Intent that started this activity and extract the string
-        Intent intent = getIntent();
-        Integer taskId = intent.getIntExtra("task", 0);
-        String getUrl = URL + "/" + taskId;
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, getUrl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject taskObject = new JSONObject(response);
-                    task = new Task(taskObject.getInt("id"),
-                            taskObject.getString("name"),
-                            taskObject.getInt("price"),
-                            taskObject.getInt("quantity"),
-                            0);
-                    Log.d("Response", response);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        },
+    public void addProductToDb(View view) {
+        name = (EditText) findViewById(R.id.input_name);
+        price = (EditText) findViewById(R.id.input_price);
+        quantity = (EditText) findViewById(R.id.quantity_input);
+
+        Integer taskId = intent.getIntExtra("taskId", 0);
+
+        if (taskId == 0) {
+            StringRequest postRequest = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Response", response);
+                        Toast.makeText(getBaseContext(), "Dodawanie produktu...", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getBaseContext(), ShowTasksActivity.class);
+                        startActivity(intent);
+                    }
+                },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.d("Error.Response", error.toString());
                     }
-                });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
-    public void addProductToDb(View view) {
-        name =      (EditText) findViewById(R.id.input_name);
-        price =     (EditText) findViewById(R.id.input_price);
-        quantity =  (EditText) findViewById(R.id.quantity_input);
-
-        StringRequest postRequest = new StringRequest(Request.Method.POST, URL,
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Log.d("Response", response);
-                    Toast.makeText(getBaseContext(), "Dodawanie produktu...", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getBaseContext(), ShowTasksActivity.class);
-                    startActivity(intent);
                 }
-        },
-            new Response.ErrorListener() {
+            ) {
                 @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.d("Error.Response", error.toString());
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("name", name.getText().toString());
+                    params.put("price", price.getText().toString());
+                    params.put("quantity", quantity.getText().toString());
+                    return params;
                 }
-            }
-        ) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("name", name.getText().toString());
-                params.put("price", price.getText().toString());
-                params.put("quantity", quantity.getText().toString());
-                return params;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(postRequest);
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            requestQueue.add(postRequest);
+        }
+        else {
+            String putUrl = URL + "/" + taskId;
+            StringRequest putRequest = new StringRequest(Request.Method.PUT, putUrl,
+                new Response.Listener<String>() {
+                   @Override
+                    public void onResponse(String response) {
+                       Log.d("Response", response);
+                       Toast.makeText(getBaseContext(), "Aktualizacja produktou...", Toast.LENGTH_SHORT).show();
+                       Intent intent = new Intent(getBaseContext(), ShowTasksActivity.class);
+                       startActivity(intent);
+                   }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error.Response", error.toString());
+                    }
+                }
+            ) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("name", name.getText().toString());
+                    params.put("price", price.getText().toString());
+                    params.put("quantity", quantity.getText().toString());
+                    return params;
+                }
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            requestQueue.add(putRequest);
+        }
     }
 }
