@@ -10,40 +10,27 @@ before do
   content_type :json
 end
 
-get '/' do
-  content_type :html
-  send_file './public/index.html'
-end
+class App < Sinatra::Base
 
-get '/tasks' do
-  Task.all.to_json
-end
-
-get '/tasks/:id' do
-  Task.where(id: params['id']).first.to_json
-end
-
-post '/tasks' do
-  task = Task.new(
-               name:     params['name'],
-               price:    params['price'],
-               quantity: params['quantity']
-  )
-
-  if task.save
-    task.to_json
-  else
-    halt 422, task.errors.full_messages.to_json
+  get '/' do
+    content_type :html
+    send_file './public/index.html'
   end
-end
 
-put '/tasks/:id' do
-  task = Task.where(id: params['id']).first
+  get '/tasks' do
+    Task.all.to_json
+  end
 
-  if task
-    task.name     = params['name']     if params.has_key?('name')
-    task.price    = params['price']    if params.has_key?('price')
-    task.quantity = params['quantity'] if params.has_key?('quantity')
+  get '/tasks/:id' do
+    Task.where(id: params['id']).first.to_json
+  end
+
+  post '/tasks' do
+    task = Task.new(
+                 name:     params['name'],
+                 price:    params['price'],
+                 quantity: params['quantity']
+    )
 
     if task.save
       task.to_json
@@ -51,21 +38,38 @@ put '/tasks/:id' do
       halt 422, task.errors.full_messages.to_json
     end
   end
-end
 
-delete '/tasks/:id' do
-  task = Task.where(id: params['id'])
+  put '/tasks/:id' do
+    task = Task.where(id: params['id']).first
 
-  if task.destroy_all
-    { success: 'ok' }.to_json
-  else
-    halt 500
+    if task
+      task.name     = params['name']     if params.has_key?('name')
+      task.price    = params['price']    if params.has_key?('price')
+      task.quantity = params['quantity'] if params.has_key?('quantity')
+
+      if task.save
+        task.to_json
+      else
+        halt 422, task.errors.full_messages.to_json
+      end
+    end
   end
-end
 
-get '/refresh' do
-  # Clean the database and create the initial data
-  load './db/seeds.rb'
+  delete '/tasks/:id' do
+    task = Task.where(id: params['id'])
+
+    if task.destroy_all
+      { success: 'ok' }.to_json
+    else
+      halt 500
+    end
+  end
+
+  get '/refresh' do
+    # Clean the database and create the initial data
+    load './db/seeds.rb'
+  end
+
 end
 
 after do
