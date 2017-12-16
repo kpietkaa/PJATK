@@ -12,3 +12,7 @@ production:
 development:
   <<: *default
   database: todo
+
+test:
+  <<: *default
+  database: todo_test
