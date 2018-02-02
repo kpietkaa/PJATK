@@ -1,7 +1,6 @@
 # BUGS
 #
 # TODO
-# 1. Wybranie innego pola niz na poczatku z 2 dostepnych
 #
 module PuzSim
   class Simulation
@@ -15,8 +14,11 @@ module PuzSim
       temp_gates.each_index.select{ |idx| temp_gates[idx] == 0 }.first
     end
 
-    def change_to_other_close_gate
-      @gates.each_index.select { |val| @gates[val] < 2 }
+    def change_to_other_close_gate(choosen_gate, empty_gate)
+      temp_gates = @gates
+      temp_gates[choosen_gate] = 99
+      temp_gates[empty_gate] = 99
+      temp_gates.each_index.select{ |idx| temp_gates[idx] != 99 }.first
     end
 
     def put_ferrari_in_gate
