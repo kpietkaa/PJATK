@@ -1,5 +1,4 @@
 # BUGS
-# 1. Wybiera puste pole kiedy jest ono wybrane
 #
 # TODO
 # 1. Wybranie innego pola niz na poczatku z 2 dostepnych
@@ -10,16 +9,10 @@ module PuzSim
       @number = number
     end
 
-    def show_one_empty_gate
-      loop do
-        @gate = randomize
-        if @gates[@gate].zero?
-          @gates[@gate] = 99
-          break
-        end
-      end
-      puts "Empty gate: #{@gate}"
-      puts "GATES: #{@gates}"
+    def show_one_empty_gate(choosen_gate)
+      temp_gates = @gates
+      temp_gates[choosen_gate] = 99
+      temp_gates.each_index.select{ |idx| temp_gates[idx] == 0 }.first
     end
 
     def change_to_other_close_gate
