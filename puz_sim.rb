@@ -1,7 +1,3 @@
-# BUGS
-#
-# TODO
-#
 module PuzSim
   class Simulation
     def initialize(number)
@@ -54,11 +50,12 @@ module PuzSim
         sim.put_ferrari_in_gate
         choosen_gate = sim.randomize
         puts "Choosen_gate: #{choosen_gate}"
-        sim.show_one_empty_gate
-        available_gates = sim.change_to_other_close_gate
-        puts "Available gates: #{available_gates}"
+        empty_gate = sim.show_one_empty_gate(choosen_gate)
+        puts "Empty gate: #{empty_gate}"
+        choosen_gate = sim.change_to_other_close_gate(choosen_gate, empty_gate)
+        puts "Different gates: #{choosen_gate}"
+        puts "Check result: #{sim.check_if_win(choosen_gate)}"
         puts '########################################################'
-        # check_if_win(choosen_gate)
         # write result of one simulation to file
       end
     end
@@ -76,3 +73,4 @@ module PuzSim
     end
   end
 end
+
