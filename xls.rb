@@ -6,7 +6,7 @@ class XLS
     Spreadsheet.client_encoding = 'UTF-8'
     @spreadsheet = Spreadsheet::Workbook.new
     @sheet = @spreadsheet.create_worksheet
-    @sheet.name = 'Simulation results'
+    @sheet.name = 'Simulation_results.xls'
     @columns = {
       nr:     { id: 0, width: 10 },
       result: { id: 1, wodth: 6 }
