@@ -49,14 +49,8 @@ module PuzSim
       @number.times do |_num|
         sim.put_ferrari_in_gate
         choosen_gate = sim.randomize
-        puts "Choosen_gate: #{choosen_gate}"
         empty_gate = sim.show_one_empty_gate(choosen_gate)
-        puts "Empty gate: #{empty_gate}"
         choosen_gate = sim.change_to_other_close_gate(choosen_gate, empty_gate)
-        puts "Different gates: #{choosen_gate}"
-        puts "Check result: #{sim.check_if_win(choosen_gate)}"
-        puts '########################################################'
-        # write result of one simulation to file
       end
     end
 
@@ -66,11 +60,7 @@ module PuzSim
       @number.times do |_num|
         sim.put_ferrari_in_gate
         choosen_gate = sim.randomize
-        puts "Choosen_gate: #{choosen_gate}"
-        puts "Check if win: #{sim.check_if_win(choosen_gate)}"
-        puts '########################################################'
       end
     end
   end
 end
-
