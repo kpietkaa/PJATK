@@ -22,7 +22,6 @@ module PuzSim
     def put_ferrari_in_gate
       @gates = [0, 0, 0]
       @gates[randomize] = 1
-      puts "put_ferrari_in_gate | @gates: #{@gates}"
     end
 
     def check_if_win(gate)
