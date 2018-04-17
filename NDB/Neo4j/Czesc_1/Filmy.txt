@@ -1,0 +1,32 @@
+Część 1 - Filmy
+  2. MATCH (hugo:Person {name: "Hugo Weaving"})-[:ACTED_IN]->(hugoMovies) RETURN hugoMovies
+
+  3. MATCH (hugo:Person {name: "Hugo Weaving"})-[:ACTED_IN]->(m)<-[:DIRECTED]-(d) RETURN d
+
+  4. MATCH (hugo:Person {name: "Hugo Weaving"})-[:ACTED_IN]->(m)<-[:ACTED_IN]-(coActors) RETURN coActors.name
+
+  5.  MATCH (actor:Person)-[:ACTED_IN]->(movie)
+      WITH actor,count(movie) AS number
+      WHERE number > 0
+      RETURN actor.name, number
+
+  6. MATCH (person)-[:DIRECTED]->(m)<-[:WROTE]-(person) RETURN person.name, m.title
+
+  7. MATCH (hugo:Person {name: "Hugo Weaving"})-[:ACTED_IN]->(m)<-[:ACTED_IN]-(keanu:Person {name: "Keanu Reeves"}) RETURN m.title
+
+  8.  MATCH (Hugo:Person {name: "Hugo Weaving"})
+      CREATE (Captain:Movie {title: "Captain America: The First Avenger"})
+      CREATE (Joe:Person {name: "Joe Johnston"})
+      CREATE (Christopher:Person {name: "Christopher Markus"})
+      CREATE (Stephen:Person {name: "Stephen McFeely"})
+      CREATE (Chris:Person {name: "Chris Evans"})
+      CREATE (Samuel:Person {name: "Samuel L. Jackson"})
+      CREATE
+        (Joe)-[:DIRECTED]->(Captain),
+        (Christopher)-[:WROTE]->(Captain),
+        (Stephen)-[:WROTE]->(Captain),
+        (Chris)-[:ACTED_IN]->(Captain),
+        (Samuel)-[:ACTED_IN]->(Captain),
+        (Hugo)-[:ACTED_IN]->(Captain)
+      
+      MATCH (Captain: Movie {title: "Captain America: The First Avenger"})-[r]-(m) RETURN Captain,r,m
