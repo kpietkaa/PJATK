@@ -1,8 +1,14 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.4.2'
 
 gem 'rails', '4.2.8'
-gem 'sqlite3'
+gem 'pg', '~> 0.21'
 gem 'pry-rails'
 gem 'spring', group: :development
+
+gem 'faraday'
+gem 'whenever', require: false
+gem 'sidekiq'
+
+gem 'event_bg_bus'
