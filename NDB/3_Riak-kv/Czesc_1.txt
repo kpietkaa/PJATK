@@ -1,0 +1,171 @@
+##############################################################################################
+############################################### 1
+##############################################################################################
+
+curl -i -XPOST -H 'Content-Type: application/json' -d '{ 'name': 'MacBook', 'size': 12, 'ram': 8 'available': true }' http://localhost:8098/buckets/s17407/keys
+HTTP/1.1 201 Created
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Location: /buckets/s17407/keys/GveWvn43IuQIfoXTzdEimIOnVRU
+Date: Thu, 28 Jun 2018 21:12:54 GMT
+Content-Type: application/json
+Content-Length:
+
+curl -i -XPOST -H 'Content-Type: application/json' -d '{ 'name': 'MacBookAir', 'size': 11, 'ram': 4 'available': true }' http://localhost:8098/buckets/s17407/keys
+HTTP/1.1 201 Created
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Location: /buckets/s17407/keys/M684U92gMPkJ4R2oOHBI09RKOC3
+Date: Thu, 28 Jun 2018 21:13:11 GMT
+Content-Type: application/json
+Content-Length: 0
+
+curl -i -XPOST -H 'Content-Type: application/json' -d '{ 'name': 'MacBookPro', 'size': 13, 'ram': 8 'available': false }' http://localhost:8098/buckets/s17407/keys
+HTTP/1.1 201 Created
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Location: /buckets/s17407/keys/92P7SajlUHwaCLRXLi5nR2xS0EO
+Date: Thu, 28 Jun 2018 21:13:20 GMT
+Content-Type: application/json
+Content-Length: 0
+
+curl -i -XPOST -H 'Content-Type: application/json' -d '{ 'name': 'MacBookPro', 'size': 13, 'ram': 16 'available': true }' http://localhost:8098/buckets/s17407/keys
+HTTP/1.1 201 Created
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Location: /buckets/s17407/keys/1Eu4yPJ8yPe3xfKg2fGj8IkhoFv
+Date: Thu, 28 Jun 2018 21:13:31 GMT
+Content-Type: application/json
+Content-Length: 0
+
+
+curl -i -XPOST -H 'Content-Type: application/json' -d '{ 'name': 'MacBookPro', 'size': 15, 'ram': 16 'available': true }' http://localhost:8098/buckets/s17407/keys
+HTTP/1.1 201 Created
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Location: /buckets/s17407/keys/FH3cs1PmHS8Au27IuWQUfmwFETc
+Date: Thu, 28 Jun 2018 21:13:43 GMT
+Content-Type: application/json
+Content-Length: 0
+
+##############################################################################################
+############################################### 2
+##############################################################################################
+
+curl -i http://localhost:8098/buckets/s17407/keys/FH3cs1PmHS8Au27IuWQUfmwFETc
+HTTP/1.1 200 OK
+X-Riak-Vclock: a85hYGBgzGDKBVI8ypz/fi7mj18PEUpkzGNlaD+98gpfFgA=
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Link: </buckets/s17407>; rel="up"
+Last-Modified: Thu, 28 Jun 2018 21:13:43 GMT
+ETag: "7b4XbVjj9AGTZwNG6ZFGS0"
+Date: Thu, 28 Jun 2018 21:14:04 GMT
+Content-Type: application/json
+Content-Length: 55
+
+{ name: MacBookPro, size: 15, ram: 16 available: true }%
+
+##############################################################################################
+############################################### 3
+##############################################################################################
+
+curl -i -XPUT -H 'Content-Type: application/json' -d '{ 'name': 'MacBookPro', 'size': 13, 'ram': 16 'available': true, 'touch_bar': true }' http://localhost:8098/buckets/s17407/keys/1Eu4yPJ8yPe3xfKg2fGj8IkhoFv
+HTTP/1.1 204 No Content
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Date: Thu, 28 Jun 2018 21:14:39 GMT
+Content-Type: application/json
+Content-Length: 0
+
+##############################################################################################
+############################################### 4
+##############################################################################################
+
+curl -i -XPUT -H 'Content-Type: application/json' -d '{ 'name': 'MacBookAir', 'ram': 4 'available': true, 'touch_bar': false }' http://localhost:8098/buckets/s17407/keys/M684U92gMPkJ4R2oOHBI09RKOC3
+HTTP/1.1 204 No Content
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Date: Thu, 28 Jun 2018 21:15:37 GMT
+Content-Type: application/json
+Content-Length: 0
+
+##############################################################################################
+############################################### 5
+##############################################################################################
+
+curl -i -XPUT -H 'Content-Type: application/json' -d '{ 'name': 'MacBookPro', 'size': 13, 'ram': 16 'available': false, 'touch_bar': true }' http://localhost:8098/buckets/s17407/keys/1Eu4yPJ8yPe3xfKg2fGj8IkhoFv
+HTTP/1.1 204 No Content
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Date: Thu, 28 Jun 2018 21:16:07 GMT
+Content-Type: application/json
+Content-Length: 0
+
+##############################################################################################
+############################################### 6
+##############################################################################################
+
+curl -i -XDELETE http://localhost:8098/buckets/s17407/keys/92P7SajlUHwaCLRXLi5nR2xS0EO
+HTTP/1.1 204 No Content
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Date: Thu, 28 Jun 2018 21:06:26 GMT
+Content-Type: application/json
+Content-Length: 0
+
+##############################################################################################
+############################################### 7
+##############################################################################################
+
+curl -i http://localhost:8098/buckets/s17407/keys/macbookpro138
+HTTP/1.1 204 No Content
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Date: Thu, 28 Jun 2018 21:16:30 GMT
+Content-Type: application/json
+Content-Length: 0
+
+##############################################################################################
+############################################### 8
+##############################################################################################
+
+curl -i -XPOST -H 'Content-Type: application/json' -d '{ 'name': 'iMacPro', 'size': 27, 'ram': 32 'available': true }' http://localhost:8098/buckets/s17407/keys
+HTTP/1.1 201 Created
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Location: /buckets/s17407/keys/8J2dhFkxNP5oj9EfrdgR0OqSxdG
+Date: Thu, 28 Jun 2018 21:17:48 GMT
+Content-Type: application/json
+Content-Length: 0
+
+
+##############################################################################################
+############################################### 9
+##############################################################################################
+
+curl -i http://localhost:8098/buckets/s17407/keys/8J2dhFkxNP5oj9EfrdgR0OqSxdG
+HTTP/1.1 200 OK
+X-Riak-Vclock: a85hYGBgzGDKBVI8ypz/fi4W73MGspkymBIZ81gZas6svMKXBQA=
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Link: </buckets/s17407>; rel="up"
+Last-Modified: Thu, 28 Jun 2018 21:17:48 GMT
+ETag: "6j2vVYzFVV65t4DSxbIDdv"
+Date: Thu, 28 Jun 2018 21:19:14 GMT
+Content-Type: application/json
+Content-Length: 52
+
+{ name: iMacPro, size: 27, ram: 32 available: true }%
+
+##############################################################################################
+############################################### 10
+##############################################################################################
+
+curl -i -XDELETE http://localhost:8098/buckets/s17407/keys/8J2dhFkxNP5oj9EfrdgR0OqSxdG
+HTTP/1.1 204 No Content
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Date: Thu, 28 Jun 2018 21:20:00 GMT
+Content-Type: application/json
+Content-Length: 0

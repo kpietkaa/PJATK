@@ -1,0 +1,21 @@
+Część 3 – Połączenia lotnicze
+  2.  MATCH (fl:Flight)-[:ORIGIN]->(port:Airport)
+      RETURN port.name, COUNT(fl) AS flights
+      ORDER BY flights DESC
+
+  3. Znajdź wszystkie porty lotnicze, do których da się dolecieć (bezpośrednio lub
+     z przesiadkami) z Los Angeles (LAX) wydając mniej niż 3000
+
+  4. Uszereguj połączenia, którymi można dotrzeć z Los Angeles (LAX) do Dayton (DAY)
+     według ceny biletów
+
+  5. Znajdź najtańsze połączenie z Los Angeles (LAX) do Dayton (DAY)
+
+  6. Znajdź najtańsze połączenie z Los Angeles (LAX) do Dayton (DAY) w klasie biznes
+
+  7. Uszereguj linie lotnicze według ilości miast, pomiędzy którymi oferują połączenia
+     (unikalnych miast biorących udział w relacjach :ORIGIN i :DESTINATION węzłów typu
+     Flight obsługiwanych przez daną linię)
+
+  8.  
+

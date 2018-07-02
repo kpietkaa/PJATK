@@ -1,0 +1,25 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    beefcake (1.2.0)
+    cert_validator (0.0.1)
+    concurrent-ruby (1.0.5)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
+    innertube (1.1.0)
+    multi_json (1.13.1)
+    riak-client (2.6.0)
+      beefcake (~> 1.1)
+      cert_validator (~> 0.0.1)
+      i18n (~> 0.6)
+      innertube (~> 1.0)
+      multi_json (~> 1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  riak-client (~> 2.3, >= 2.3.2)
+
+BUNDLED WITH
+   1.16.1

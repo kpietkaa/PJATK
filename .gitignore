@@ -7,4 +7,4 @@ sri_1/db/development.sqlite3
 sri_1/log/*.log
 sri_1/tmp/*
 
-NDB/MongoDB/node_modules/*
+NDB/1_MongoDB/node_modules/*

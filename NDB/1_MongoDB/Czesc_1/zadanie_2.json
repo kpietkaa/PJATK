@@ -1,0 +1,31 @@
+MongoDB shell version v3.6.3
+connecting to: mongodb://127.0.0.1:27017/ndb
+MongoDB server version: 3.6.3
+{
+	"_id" : ObjectId("5abfdbde4a3cf9d57aad0629"),
+	"sex" : "Female",
+	"first_name" : "Lillian",
+	"last_name" : "Alvarez",
+	"job" : "Associate Professor",
+	"email" : "lalvarezk@angelfire.com",
+	"location" : {
+		"city" : "Zhangping",
+		"address" : {
+			"streetname" : "Redwing",
+			"streetnumber" : "0"
+		}
+	},
+	"description" : "pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in",
+	"height" : "156.84",
+	"weight" : "78.25",
+	"birth_date" : "1960-01-04T11:34:13Z",
+	"nationality" : "China",
+	"credit" : [
+		{
+			"type" : "mastercard",
+			"number" : "3582900459019692",
+			"currency" : "ZAR",
+			"balance" : "5030.48"
+		}
+	]
+}

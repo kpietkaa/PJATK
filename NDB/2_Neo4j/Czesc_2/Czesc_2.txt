@@ -1,0 +1,28 @@
+Część 2 - Wycieczki górskie
+  2.  MATCH (p:town{name:'Darjeeling'})-[r*..5]-(t:peak{name:'Sandakphu'}) 
+      RETURN p,r,t
+
+  3.  MATCH (dar:town {name: "Darjeeling"}), (san:peak {name: "Sandakphu"}), 
+        p = allShortestPaths((dar)-[*]-(san))
+      RETURN p
+
+  4.  MATCH (dar:town {name: "Darjeeling"}), (san:peak {name: "Sandakphu"}), 
+        p = allShortestPaths((dar)-[*]-(san))
+      WHERE ALL (path IN relationships(p) WHERE path.winter = "true")
+      RETURN p
+
+  5.  MATCH (dar:town {name: "Darjeeling"}), (san:peak {name: "Sandakphu"}),
+      p = (dar)-[rels*..20]->(san)
+      RETURN rels, reduce(prio=0, r in rels | prio + r.distance ) as dist
+      ORDER BY dist ASC
+
+  6.  MATCH (dar:town {name: "Darjeeling"}), 
+        p = (dar)-[r:twowheeler*..7]->(san)
+      WHERE ALL (path IN relationships(p) WHERE path.summer = "true")
+      RETURN r
+
+  7.  MATCH (dar:town {name: "Darjeeling"}), 
+        p = (dar)-[r:twowheeler*..7]->(san)
+      WHERE ALL (path IN relationships(p) WHERE path.summer = "true")
+      RETURN san.name
+
