@@ -1,0 +1,25 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.2)
+    concurrent-ruby (1.0.5)
+    faker (1.8.7)
+      i18n (>= 0.7)
+    i18n (1.0.1)
+      concurrent-ruby (~> 1.0)
+    method_source (0.9.0)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    thrift (0.11.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  faker
+  pry
+  thrift
+
+BUNDLED WITH
+   1.16.2
